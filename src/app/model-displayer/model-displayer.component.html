@@ -1,0 +1,19 @@
+<div *ngIf="mode == 'node'" id="container">
+	<div class="code-line">
+		<span class="keyword">const</span>&nbsp;&#123; <span class="var">Schema</span>, <span class="var">model</span> &#125; = <span class="keyword">require</span>(<span class="string">'mongoose'</span>);
+	</div>
+	<br>
+	<div class="code-line">
+		<span class="keyword">const</span>&nbsp;<span class="var">{{ formattedName }}Schema</span> = <span class="keyword">new</span>&nbsp;<span class="var">Schema</span>(&#123;
+	</div>
+	<div class="code-line" *ngFor="let field of fields">
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">{{field.name}}</span><span *ngIf="field.isArray"></span>:&nbsp;&#123;<span class="var">&nbsp;type</span>:&nbsp;<span class="keyword">{{field.type}}</span><span *ngIf="field.default">, default: {{field.default}}</span>&nbsp;&#125;,
+	</div>
+	<div class="code-line">&#125;);</div>
+	<br>
+	<div class="code-line">
+		<span class="keyword">const</span>&nbsp;<span class="var">{{ formattedName }}</span> = <span class="var">model</span>(<span class="string">'{{formattedName}}'</span>, <span class="var">{{formattedName}}Schema</span>);
+	</div>
+	<br>
+	<div class="code-line"><span class="keyword">module</span>.<span class="keyword">exports</span> = <span class="var">{{formattedName}}</span>;</div>
+</div>
